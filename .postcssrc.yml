@@ -1,0 +1,4 @@
+plugins:
+  postcss-import: {}
+  postcss-cssnext: {}
+  tailwindcss: './app/javascript/stylesheets/tailwind.js'
