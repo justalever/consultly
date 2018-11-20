@@ -1,2 +1,38 @@
-<h1>Welcome to <%= Rails.configuration.application_name %>!</h1>
-<p class="lead">Use this document as a way to quickly start any new project by generating files, installing gems, and more. </p>
+<div class="py-10 lg:py-20 px-4 border-b border-grey-light mb-4 text-indigo-darker">
+  <div class="container m-auto text-center">
+    <h1 class="text-xl lg:text-3xl">Welcome to <%= Rails.configuration.application_name %>!</h1>
+    <p class="lead my-2 max-w-md m-auto leading-normal text-grey-darker text-lg mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime quaerat maiores, repellat minus fugit, non modi id.</p>
+
+    <% unless user_signed_in? %>
+    <%= link_to "Sign Up", new_user_registration_path, class:"btn btn-primary my-3" %>
+    <% else %>
+    <%= link_to "Schedule a new session", new_meeting_path, class:"btn btn-primary my-3" %>
+    <% end %>
+  </div>
+</div>
+
+
+<div class="max-w-lg m-auto">
+  <div class="py-10 lg:py-16 px-4 flex flex-wrap items-center justify-between">
+
+    <div class="lg:w-1/2 w-full mb-4 lg:mb-0">
+      <h3 class="mb-1">Become a pro in no time</h3>
+      <p class="leading-normal">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur commodi similique nihil tempore, possimus, sequi unde illum, officia impedit maxime aut obcaecati. Eligendi officia ipsam et optio, tempore.</p>
+    </div>
+
+    <div class="lg:w-1/2 w-full text-center">
+      <%= image_tag 'teacher.svg', alt: "Become a pro", width: 400 %>
+    </div>
+  </div>
+
+  <div class="py-10 lg:py-16 px-4 flex flex-wrap items-center justify-between">
+    <div class="lg:w-1/2 w-full mb-4 lg:mb-0">
+      <%= image_tag 'move-forward.svg', alt: "Move forward", width: 320 %>
+    </div>
+
+    <div class="lg:w-1/2 w-full">
+      <h3 class="mb-1">Move foward with your skills</h3>
+      <p class="leading-normal">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur commodi similique nihil tempore, possimus, sequi unde illum, officia impedit maxime aut obcaecati. Eligendi officia ipsam et optio, tempore.</p>
+    </div>
+  </div>
+</div>

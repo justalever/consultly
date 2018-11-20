@@ -1,0 +1,6 @@
+var comments = document.getElementById("comments");
+var commentField = document.getElementById("comment_reply");
+var trixField = document.getElementById("comment_reply_trix");
+comments.insertAdjacentHTML("beforeend", "<%= escape_javascript(render(@comment)) %>");
+commentField.value = "";
+trixField.innerHTML = "";

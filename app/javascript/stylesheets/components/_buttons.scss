@@ -1,7 +1,8 @@
 /* Buttons */
 
 .btn {
-  @apply font-semibold text-sm py-2 px-4 rounded cursor-pointer no-underline;
+  @apply font-semibold text-sm py-2 px-3 rounded cursor-pointer no-underline;
+  transition: 0.2s ease all;
 }
 
 .btn-default {
@@ -13,10 +14,34 @@
   }
 }
 
-.link {
-  @apply no-underline text-grey-darker;
+.btn-primary {
+  @apply bg-indigo-light text-indigo-lightest shadow;
 
   &:hover, &:focus {
-    @apply text-grey-dark;
+    @apply bg-indigo-lighter text-indigo-dark;
+  }
+}
+
+.btn-secondary {
+  @apply bg-grey-darker text-grey-lighter shadow;
+
+  &:hover, &:focus {
+    @apply bg-grey-darkest text-grey-light;
+  }
+}
+
+.btn-destroy {
+  @apply bg-white border border-red text-red;
+
+  &:hover, &:focus {
+    @apply bg-red text-white;
+  }
+}
+
+.link {
+  @apply no-underline text-indigo;
+
+  &:hover, &:focus {
+    @apply text-indigo-dark;
   }
 }

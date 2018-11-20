@@ -1,0 +1,40 @@
+<h3 class="pt-5 mb-4">Payment</h3>
+  <div class="mb-6 relative mt-2">
+    <label for="card-element" class="label">
+      Enter credit or debit card. All sessions cost $199 USD.
+    </label>
+
+    <div id="card-element" class="input">
+      <!-- a Stripe Element will be inserted here. -->
+    </div>
+    <!-- used to display Element errors -->
+    <div id="card-errors" role="alert"></div>
+  </div>
+
+  <% if current_user.stripe_id.present? %>
+    <div class="bg-grey-lightest p-5 border border-grey-light rounded mb-6">
+      <h4>Previously used card</h4>
+
+      <div class="flex flex-wrap items-center justify-between my-4">
+        <div class="w-full lg:w-auto mb-6 lg:mb-0">
+          <p class="label">Card Brand</p>
+          <p><%= current_user.card_brand %></p>
+        </div>
+        <div class="w-full lg:w-auto mb-6 lg:mb-0">
+          <p class="label">Last 4 Digits</p>
+          <p><%= current_user.card_last4 %></p>
+        </div>
+        <div class="w-full lg:w-auto mb-6 lg:mb-0">
+          <p class="label">Exp. Month</p>
+          <p><%= current_user.card_exp_month %></p>
+        </div>
+        <div class="w-full lg:w-auto">
+          <p class="label">Exp. Year</p>
+          <p><%= current_user.card_exp_year %></p>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+
+

@@ -1,0 +1,25 @@
+#nav-tab .active a {
+  @apply bg-indigo text-white;
+}
+
+.tab {
+   @apply p-5 no-underline inline-block text-indigo;
+   transition: ease 0.2s all;
+   margin-bottom: -1px;
+
+   &:hover {
+    @apply bg-indigo-dark text-white;
+   }
+
+   &:active {
+      @apply text-white;
+   }
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}

@@ -12,11 +12,12 @@
 
     <%= stylesheet_pack_tag  'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag  'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "https://js.stripe.com/v3/", 'data-turbolinks-track': 'reload' %>
+    <%= tag :meta, name: "stripe-public-key", content: Rails.application.credentials.stripe_publishable_key %>
 
   </head>
 
- <body class="bg-white">
-
+ <body class="bg-grey-lighter">
   <% flash.each do |type, message| %>
     <% if type == "alert" %>
       <div class="bg-red-light">
@@ -30,10 +31,13 @@
     <% end %>
   <% end %>
 
-    <header class="mb-4">
+    <header class="bg-white">
       <nav class="flex items-center justify-between flex-wrap bg-grey-lightest p-4 text-grey-darker border-b border-grey-light">
         <div class="flex items-center flex-no-shrink mr-6">
-          <%= link_to Rails.configuration.application_name, root_path, class:"link text-xl tracking-tight font-semibold" %>
+          <%= link_to root_path, class:"link text-xl tracking-tight font-semibold" do %>
+            <svg viewBox="0 0 20 20" width="20" height="20" class="fill-current text-grey-darker"><path d="M13 8V0L8.11 5.87 3 12h4v8L17 8h-4z"></path></svg>
+            <%= Rails.configuration.application_name %>
+          <% end %>
         </div>
         <div class="block lg:hidden">
           <button class="flex items-center px-3 py-2 border rounded text-grey border-grey hover:text-grey-dark hover:border-grey-dark">
@@ -41,18 +45,22 @@
           </button>
         </div>
         <div class="w-full block lg:flex-1 lg:flex items-center text-center lg:text-left">
-          <div class="lg:flex-grow">
-            <%= link_to "Basic Link", "#", class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link" %>
-          </div>
           <div class="w-full block lg:flex lg:flex-row lg:flex-1 mt-2 lg:mt-0 text-center lg:text-left lg:justify-end">
-            <%= link_to "Login", new_user_session_path, class:"btn btn-default mb-2 lg:mr-2 lg:mb-0 block" %>
-            <%= link_to "Sign Up", new_user_registration_path, class:"btn btn-default block" %>
+            <% unless user_signed_in? %>
+            <%= link_to "Login", new_user_session_path, class:"btn btn-default mr-2" %>
+            <%= link_to "Sign Up", new_user_registration_path, class:"btn btn-default" %>
+            <% else %>
+            <%= link_to "Dashboard", meetings_path, class: "btn btn-default mr-2" %>
+            <%= link_to "Schedule new session", new_meeting_path, class: "btn btn-default mr-2" unless admin? %>
+            <%= link_to "Users", users_path, class: "btn btn-default mr-2" if admin? %>
+            <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class:"btn btn-default mr-2" %>
+            <% end %>
           </div>
         </div>
       </nav>
     </header>
 
-    <main class="lg:px-10 px-4">
+    <main>
       <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
   </body>

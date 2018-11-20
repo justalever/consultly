@@ -1,0 +1,43 @@
+<div class="p-10 bg-white border border-grey-light rounded">
+<%= form_with(model: meeting, local: true, class: "meeting-form") do |form| %>
+  <% if meeting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
+
+      <ul>
+      <% meeting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h3 class="mb-4">Meeting Information</h3>
+
+  <div class="mb-6">
+    <%= form.label :name, class: "label" %>
+    <%= form.text_field :name, class: "input" %>
+  </div>
+
+  <div class="mb-6">
+    <%= form.label :start_time, class: "label" %>
+    <div class="flex items-center justify-between max-w-md">
+      <%= form.datetime_select :start_time, { start_day: Date.today, start_year: Date.today.year, minute_step: 15 }, { class: "select py-2 px-2 mr-2" } %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_time, class: "label" %>
+    <div class="flex items-center justify-between max-w-md">
+      <%= form.datetime_select :end_time, { start_day: Date.today, start_year: Date.today.year, minute_step: 15 }, { class: "select py-2 px-2 mr-2" } %>
+    </div>
+  </div>
+
+  <hr class="border" />
+
+  <%= render "payment_form" %>
+
+  <%= form.submit class: "btn btn-primary text-base py-3 px-5" %>
+
+<% end %>
+</div>

@@ -1,0 +1,19 @@
+<div class="container m-auto bg-white my-10 border border-grey-light p-10">
+  <h1 class="text-indigo-darker">Active Sessions</h1>
+
+   <% @active_sessions.each do |meeting| %>
+    <div class="flex flex-wrap items-center justify-start p-4 border-b border-grey-light mb-6">
+      <div class="flex-1 flex justify-between">
+        <div>
+          <%= link_to meeting.name, meeting, class: "link mr-4" %>
+        </div>
+        <div>
+          <%= readable_time(meeting.start_time) %> &ndash;
+          <%= readable_time(meeting.end_time) %>
+        </div>
+      </div>
+
+      <%= link_to 'Cancel Meeting', meeting, method: :delete, data: { confirm: 'Are you sure? There are no refunds' }, class: "btn btn-destroy ml-4" if admin? %>
+    </div>
+    <% end %>
+</div>
